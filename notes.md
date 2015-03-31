@@ -12,10 +12,27 @@ Setup your ~/.chef/knife.rb file and set up the chef_server_url, client_key (an 
 
 #### chef-apply
 Run chef on a specific file
-eg chef-apply test.rb will for instance create a file from a template file, etc.
+eg chef-apply test.rb will for instance create a resource like a user.
+it is rather limited and for example has no concempt of templates... 
+For more complex use cases use chef-solo.
 
 #### chef-solo
 runs chef on a stand alone machine without a chef server
+
+##### example solo.rb
+```
+node_name 'tdi-chap03-solo'
+cookbook_path File.expand_path('/vagrant/cookbooks', __FILE__)
+ssl_verify_mode :verify_peer
+
+log_level :info
+log_location STDOUT
+# verbose_logging nil
+
+```
+
+##### running chef solo with custom run_list
+`sudo chef-solo -c solo.rb -o "recipe[irc]"`
 
 #### chef-shell
 a REPL similar to IRB where you can type in ruby/chef commands
@@ -28,3 +45,7 @@ gathers system info about a machine and outputs it in JSON
 
 #### knife
 allows you to do deployment, integration, system automation, etc. and is mostly used in a client/server model.
+
+##### Create new cookbook in current directory
+knife cookbook create irc -o .
+
