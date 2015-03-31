@@ -11,9 +11,9 @@ chatnets = { Freenode = { type = "IRC"; }; };
  
 settings = {
 core = {
-real_name = "Sir Michael Tippet";
-nick = "tippet";
-user_name = "tippet";
+real_name = "Mike Reeves";
+nick = "runamok";
+user_name = "runamok";
 };
 "fe-text" = { actlist_sort = "refnum"; };
 };
