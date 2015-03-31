@@ -11,7 +11,7 @@ user 'tdi' do
   action :create
   comment "Test Driven Infra"
   home "/home/tdi"
-  shell "bin/bash"
+  shell "/bin/bash"
   supports :manage_home => true
 end
 
