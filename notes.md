@@ -57,7 +57,13 @@ Book says this is created in /var/chef/cookbooks but perhaps because I have chef
 it is created in ~/.chef/cookbooks. It also complains about not finding knife.rb
 `knife cookbook create silly`
 
+##### Download community cookbooks:
+`knife cookbook site download git` # this download a gzipper tarball
+`tar xvf git-4.2.2.tar.gz`
+`mv git cookbooks`
 
+# a nice one liner to do multiple cookbooks at once
+`for dep in build-essential chef_hander dmg git windows yum yum-epel; do knife cookbook site download $dep; tar xzvf $dep*gz -C cookbooks; done`
 ## Randomness
 
 TIL that `vagrant plugin install foo` is basically just bundler. So foo can be any rubygem. So I installed [omnibus](https://rubygems.org/gems/omnibus) instead of [vagrant-omnibus](https://rubygems.org/gems/vagrant-omnibus by accident)! [The list of plugins](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins). 
