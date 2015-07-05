@@ -1,6 +1,6 @@
 node_name 'tdi-chap03-solo'
-cookbook_path File.expand_path('/vagrant/cookbooks', __FILE__)
-ssl_verify_mode :verify_peer
+cookbook_path ENV['HOME']
+cookbook_path [ File.expand_path('/vagrant/cookbooks', __FILE__), ENV['HOME'] + "/.chef/cookbooks" ]
 
 log_level :info
 log_location STDOUT

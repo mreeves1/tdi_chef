@@ -12,7 +12,7 @@ Setup your ~/.chef/knife.rb file and set up the chef_server_url, client_key (an 
 
 #### chef-apply
 Run chef on a specific file
-eg chef-apply test.rb will for instance create a resource like a user.
+eg `chef-apply test.rb` will for instance create a resource like a user.
 it is rather limited and for example has no concempt of templates... 
 For more complex use cases use chef-solo.
 
@@ -35,7 +35,7 @@ log_location STDOUT
 `sudo chef-solo -c solo.rb -o "recipe[irc]"`
 
 ##### running chef solo with run_list specified in json file
-`sudo chef-solo -c solo.rb -j runlist.json`
+`sudo chef-solo -c solo.rb -j dna.json`
 
 #### chef-shell
 a REPL similar to IRB where you can type in ruby/chef commands
@@ -50,7 +50,12 @@ gathers system info about a machine and outputs it in JSON
 allows you to do deployment, integration, system automation, etc. and is mostly used in a client/server model.
 
 ##### Create new cookbook in current directory
-knife cookbook create irc -o .
+`knife cookbook create irc -o .`
+
+##### Create cookbook in default location
+Book says this is created in /var/chef/cookbooks but perhaps because I have chef-dk 
+it is created in ~/.chef/cookbooks. It also complains about not finding knife.rb
+`knife cookbook create silly`
 
 
 ## Randomness
