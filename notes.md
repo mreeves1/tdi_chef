@@ -31,8 +31,11 @@ log_location STDOUT
 
 ```
 
-##### running chef solo with custom run_list
+##### running chef solo with overidden run_list
 `sudo chef-solo -c solo.rb -o "recipe[irc]"`
+
+##### running chef solo with run_list specified in json file
+`sudo chef-solo -c solo.rb -j runlist.json`
 
 #### chef-shell
 a REPL similar to IRB where you can type in ruby/chef commands
