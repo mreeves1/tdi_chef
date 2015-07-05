@@ -1,1 +1,6 @@
-{ "run_list": ["recipe[irc]"] }
+{ 
+  "run_list": [
+    "recipe[irc]", 
+    "recipe[git]"
+  ]
+}
