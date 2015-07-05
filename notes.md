@@ -3,7 +3,7 @@
 ## General Setup to use a chef server 
 Setup your ~/.chef/knife.rb file and set up the chef_server_url, client_key (an rsa prive key or pem file) and the validation_key you get from chef inc (formerly known as opscode). 
 
-## Chef DK (for me) is intalled into c:/opt/opcscode/chefdk
+## Chef DK (for me) is installed into c:/opt/opcscode/chefdk
 
 
 ## Chapter 3 - An Intro to Chef
@@ -49,3 +49,7 @@ allows you to do deployment, integration, system automation, etc. and is mostly 
 ##### Create new cookbook in current directory
 knife cookbook create irc -o .
 
+
+## Randomness
+
+TIL that `vagrant plugin install foo` is basically just bundler. So foo can be any rubygem. So I installed [omnibus](https://rubygems.org/gems/omnibus) instead of [vagrant-omnibus](https://rubygems.org/gems/vagrant-omnibus by accident)! [The list of plugins](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins). 
