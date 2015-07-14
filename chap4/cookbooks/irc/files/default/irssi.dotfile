@@ -1,0 +1,25 @@
+servers = (
+{
+address = "irc.freenode.net";
+chatnet = "Freenode";
+port = "6667";
+autoconnect = "Yes";
+}
+);
+ 
+chatnets = { Freenode = { type = "IRC"; }; };
+ 
+settings = {
+core = {
+real_name = "Mike Reeves";
+nick = "runamok";
+user_name = "runamok";
+};
+"fe-text" = { actlist_sort = "refnum"; };
+};
+ 
+channels = (
+{ name = "#learnchef"; chatnet = "Freenode"; autojoin = "Yes"; },
+{ name = "#chef"; chatnet = "Freenode"; autojoin = "Yes"; },
+{ name = "##tdi"; chatnet = "Freenode"; autojoin = "Yes"; }
+); 

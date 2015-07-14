@@ -66,4 +66,51 @@ it is created in ~/.chef/cookbooks. It also complains about not finding knife.rb
 `for dep in build-essential chef_hander dmg git windows yum yum-epel; do knife cookbook site download $dep; tar xzvf $dep*gz -C cookbooks; done`
 ## Randomness
 
-TIL that `vagrant plugin install foo` is basically just bundler. So foo can be any rubygem. So I installed [omnibus](https://rubygems.org/gems/omnibus) instead of [vagrant-omnibus](https://rubygems.org/gems/vagrant-omnibus by accident)! [The list of plugins](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins). 
+TIL that `vagrant plugin install foo` is basically just bundler. So foo can be any rubygem. So I installed [omnibus](https://rubygems.org/gems/omnibus) instead of [vagrant-omnibus](https://rubygems.org/gems/vagrant-omnibus by accident)! [The list of plugins](https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins).
+
+## Chapter 4 - Chef Tools
+
+### Exercises
+
+#### Create opscode user and new organization
+
+You need a user key and a validation key which you get from the opscode site.
+Your validation key is used to bootstrap new nodes. 
+
+These files usually go in ~/.chef/ 
+
+#### Example knife.rb: 
+
+```
+current_dir = File.dirname(__FILE__)
+log_level                :info
+log_location             STDOUT
+node_name                "your_laptop_name"
+client_key               "#{current_dir}/your_name.pem"
+validation_client_name   "your-chef-server-organization-name-validator"
+validation_key           "#{current_dir}/your-chef-server-organization-name-validator.pem"
+chef_server_url          "https://api.opscode.com/organizations/your-chef-server-organization-name"
+cache_type               'BasicFile'
+cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
+cookbook_path            ["#{current_dir}/../cookbooks"] 
+
+```
+
+I prefer to have the cookbooks elsewhere but you can add to the `cookbook_path` array easily. 
+
+#### Validate chef-server and client setup worked with:
+`knife client list`
+
+#### Install more cookbooks:
+`for dep in chruby ark ruby_build; do knife cookbook site download $dep; tar xzvf $dep*gz -C cookbooks; done`
+
+#### Upload your cookbooks:
+`knife cookbook upload -o cookbooks --all --include-dependencies` # this may throw errors and you will need to run `knife site download`, etc...
+
+#### Setup your client with the chef-server:
+`knife configure client .`
+This will generate client.rb and validation.pem. You should copy those to /etc/chef. 
+Then you can run `sudo chef-client -j dna.json` to run chef-client locally which will register your computer as a node. We will us a similar technique to do the same with our vagrant boxes. See Vagrantfile for details. 
+
+Run vagrant provision after tweaking things, uploading cookbooks, etc.
+

@@ -1,0 +1,3 @@
+# Fix SSL Warning:
+# https://stackoverflow.com/questions/22991561/chef-solo-ssl-warning-when-provisioning
+Chef::Config.ssl_verify_mode = :verify_peer
