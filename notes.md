@@ -112,5 +112,13 @@ I prefer to have the cookbooks elsewhere but you can add to the `cookbook_path` 
 This will generate client.rb and validation.pem. You should copy those to /etc/chef. 
 Then you can run `sudo chef-client -j dna.json` to run chef-client locally which will register your computer as a node. We will us a similar technique to do the same with our vagrant boxes. See Vagrantfile for details. 
 
-Run vagrant provision after tweaking things, uploading cookbooks, etc.
+#### TODO: Clean the above up
+?? Run vagrant provision after tweaking things, uploading cookbooks, etc.
 
+#### Test everything on Vagrant
+1. Run vagrant up
+1. Everything should work assuming your local ~/.chef/knife.rb is ok and keys are right
+1. If you need to, you can `vagrant ssh` and then:
+   ```
+   /tmp/vagrant-chef# chef-client -c client.rb -j dna.json
+   ```
